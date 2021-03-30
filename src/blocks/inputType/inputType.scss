@@ -1,0 +1,38 @@
+.input-type {
+  margin-right: 10px;
+  flex-grow: 1;
+  &:last-child {
+    margin-right: unset;
+  }
+
+  &__name {
+    position: relative;
+    display: flex;
+    border-radius: 4px;
+    min-height: 50px;
+    align-items: center;
+    justify-content: center;
+    background: #b0b0b0;
+    opacity: 0.4;
+
+    &:active {
+      box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+  }
+  &__input {
+    display: none;
+  }
+  &__input:checked ~ &__name {
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    color: #000;
+    background: #ccd1ef;
+    opacity: 1;
+    &:before {
+      content: '✓';
+      font-size: 24px;
+    }
+    &:after {
+      height: 0;
+    }
+  }
+}

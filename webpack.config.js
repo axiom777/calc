@@ -106,5 +106,8 @@ module.exports = (_, options) => {
         errors: true,
       },
     },
+    stats: {
+      children: true,
+    },
   };
 };

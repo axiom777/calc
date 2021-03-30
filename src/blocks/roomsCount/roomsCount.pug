@@ -1,0 +1,8 @@
+mixin roomsCount(list)
+  .rooms-count
+    span.rooms-count__name Комнат
+    .rooms-count__values
+      each el in list
+        label.rooms-count__element
+          input.rooms-count__input(type="radio" name="count")
+          span.rooms-count__value=el

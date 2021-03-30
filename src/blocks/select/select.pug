@@ -1,0 +1,7 @@
+mixin selectElements(props)
+  - const { defaultName, list } = props;
+  .select
+    .select__value= defaultName
+    ul.select__list
+      each el in list
+        li.select__item= el

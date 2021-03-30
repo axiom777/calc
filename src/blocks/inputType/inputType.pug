@@ -1,0 +1,5 @@
+mixin inputType({name, group, slug})
+  label.input-type
+    input.input-type__input(type='radio', name=group, data-name=slug)
+    span.input-type__name.hover-effect= name
+

@@ -1,6 +1,32 @@
+include /blocks/inputType/inputType.pug
+include /blocks/select/select.pug
+include /blocks/area/area.pug
+include /blocks/roomsCount/roomsCount.pug
+-
+  const roomData = {
+    defaultName:"Тип помщенения",
+    list:["Комната","Кухня","Совмещенный санузел","Туалет","Ванная"] 
+    }
+
+  const typeData= {
+    defaultName:"Тип ремонта",
+    list:["Косметичский","Капитальный","Дизайнерский"] 
+    }
+
 .wrapper
   .calc
     h2.calc__heading Онлайн калькулятор ремонта
-
-
-
+    .calc__house-types
+      +inputType({name:"Новостройка", group:"type", slug:"new"})
+      +inputType({name:"Вторичное жильё", group:"type", slug:"second"})
+      +inputType({name:"Комната", group:"type", slug:"room"})
+    .calc__controls
+      .calc__item
+        +selectElements(roomData)
+      .calc__item
+        +roomsCount(['1','2','3','4+'])
+      .calc__item
+        +area
+      .calc__item
+        +selectElements(typeData)
+    button.calc__button.hover-effect Рассчитать стоимость
