@@ -1,8 +1,31 @@
-(() => {
-  const input = document.querySelector('.area__input');
-  if (!input) return;
-  let prevValue: string = '0';
-  const handleInput = (e: Event) => {
+interface TResponse {
+  type: string;
+  value: number;
+}
+
+type TAreaProps = {
+  element: HTMLInputElement;
+  callback: (arg: TResponse) => void;
+};
+
+class Area {
+  readonly element: HTMLInputElement;
+  readonly callback: (arg: TResponse) => void;
+  prevValue: string;
+
+  constructor({ element, callback }: TAreaProps) {
+    this.element = element;
+    this.callback = callback;
+    this.prevValue = '0';
+    this.init();
+  }
+
+  init() {
+    const handle = this.handleInput.bind(this);
+    this.element.addEventListener('input', handle);
+  }
+
+  handleInput(e: Event) {
     const target = e.target as HTMLInputElement;
     const value = target.value;
     const split = value.split('.');
@@ -18,17 +41,33 @@
       target.value = target.value.substr(0, target.value.length - 1);
     }
     if (split.length > 0 && split[0].length > 3) {
-      target.value = prevValue;
+      target.value = this.prevValue;
       return;
     }
     if (isNaN(Number(value))) {
-      target.value = prevValue;
+      target.value = this.prevValue;
       return;
     }
     value[0] === '-' && (target.value = target.value.substr(1));
 
-    prevValue = value;
-  };
+    this.prevValue = value;
+    this.change();
+  }
 
-  input.addEventListener('input', handleInput);
-})();
+  public getValue(): number {
+    return parseFloat(this.prevValue);
+  }
+
+  change() {
+    const type: string = 'area';
+    const value = parseFloat(this.prevValue);
+    this.callback({ type, value });
+  }
+}
+
+const areaElement = document.querySelector('.area__input') as HTMLInputElement;
+const callback = ({ type, value }: TResponse) => {
+  console.log(value);
+};
+
+const area = new Area({ element: areaElement, callback });
