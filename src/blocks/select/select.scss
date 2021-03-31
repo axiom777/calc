@@ -7,6 +7,20 @@
   user-select: none;
   display: flex;
   align-items: center;
+  &_disabled {
+    pointer-events: none;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: gray;
+      z-index: 1;
+      opacity: 30%;
+    }
+  }
 
   &_active &__list {
     opacity: 1;
