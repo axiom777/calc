@@ -7,10 +7,12 @@ $border-radius: 4px;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   background: gray;
   font-family: 'Roboto', sans-serif;
 }
+
 .wrapper {
   max-width: 1200px;
   margin: 0 auto;
@@ -21,21 +23,26 @@ body {
   padding: 20px;
   display: flex;
   flex-direction: column;
+
   &__heading {
     margin-bottom: 10px;
   }
+
   &__house-types {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
   }
+
   &__controls {
     margin-top: 10px;
     display: flex;
     border: 1px solid gold;
     border-radius: $border-radius;
+    flex-wrap: wrap;
   }
+
   &__item {
     flex-grow: 1;
     display: flex;
@@ -50,6 +57,7 @@ body {
       transition: 0.15s;
     }
   }
+
   &__button {
     margin-left: auto;
     margin-top: 20px;

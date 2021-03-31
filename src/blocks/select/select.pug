@@ -4,4 +4,5 @@ mixin selectElements(props)
     .select__value= defaultName
     ul.select__list
       each el in list
-        li.select__item= el
+        - const { name, data } = el;
+        li.select__item(data-name=data)= name

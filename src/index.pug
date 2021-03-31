@@ -5,12 +5,22 @@ include /blocks/roomsCount/roomsCount.pug
 -
   const roomData = {
     defaultName:"Тип помщенения",
-    list:["Комната","Кухня","Совмещенный санузел","Туалет","Ванная"] 
+    list:[
+      {name:"Комната",data:'room'},
+      {name:"Кухня", data:"kitchen"},
+      {name:"Совмещенный санузел", data:"combined"},
+      {name:"Туалет", data:"toilet"},
+      {name:"Ванная", data:"bath"}
+      ] 
     }
 
   const typeData= {
     defaultName:"Тип ремонта",
-    list:["Косметичский","Капитальный","Дизайнерский"] 
+    list:[
+      {name: "Косметичский", data:"cosmetic"},
+      {name:"Капитальный" , data:"complete"},
+      {name: "Дизайнерский" , data:"design"}
+    ] 
     }
 
 .wrapper

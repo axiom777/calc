@@ -4,5 +4,5 @@ mixin roomsCount(list)
     .rooms-count__values
       each el in list
         label.rooms-count__element
-          input.rooms-count__input(type="radio" name="count")
-          span.rooms-count__value=el
+          input.rooms-count__input(type='radio', name='count', data-name=el)
+          span.rooms-count__value= el

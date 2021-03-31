@@ -1,16 +1,16 @@
-interface TResponse {
+interface TResponseArea {
   type: string;
   value: number;
 }
 
 type TAreaProps = {
   element: HTMLInputElement;
-  callback: (arg: TResponse) => void;
+  callback: (arg: TResponseArea) => void;
 };
 
 class Area {
   readonly element: HTMLInputElement;
-  readonly callback: (arg: TResponse) => void;
+  readonly callback: TAreaProps['callback'];
   prevValue: string;
 
   constructor({ element, callback }: TAreaProps) {
@@ -66,8 +66,8 @@ class Area {
 }
 
 const areaElement = document.querySelector('.area__input') as HTMLInputElement;
-const callback = ({ type, value }: TResponse) => {
-  console.log(value);
+const callback = ({ type, value }: TResponseArea) => {
+  console.log(type, value);
 };
 
 const area = new Area({ element: areaElement, callback });
