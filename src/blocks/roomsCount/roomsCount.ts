@@ -1,16 +1,13 @@
-interface TResponseRoomsCount {
-  type: string;
-  value: number;
-}
+import { IResponseRoomsCount } from '../../Interfaces';
 
 type TRoomsCountProps = {
   element: HTMLElement;
-  callback: (arg: TResponseRoomsCount) => void;
+  callback: (arg: IResponseRoomsCount) => void;
 };
 
-class RoomsCount {
+export class RoomsCount {
   element: HTMLElement;
-  callback: (arg: TResponseRoomsCount) => void;
+  callback: (arg: IResponseRoomsCount) => void;
   value: number;
 
   constructor({ element, callback }: TRoomsCountProps) {
@@ -39,12 +36,7 @@ class RoomsCount {
       this.change();
     }
   }
-}
-
-const counter = document.querySelector('.rooms-count') as HTMLElement;
-{
-  const callback = ({ type, value }: TResponseRoomsCount) =>
-    console.log(type, value);
-  const roomsCount = new RoomsCount({ element: counter, callback });
-  roomsCount.init();
+  public getValue() {
+    return this.value;
+  }
 }

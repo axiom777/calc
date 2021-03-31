@@ -1,14 +1,12 @@
-interface IResponseSelect {
-  type: string;
-  value: string | null;
-}
+import { IResponseSelect } from '../../Interfaces';
+
 type TSelectProps = {
   element: HTMLElement;
   callback: (arg: IResponseSelect) => void;
   typeName: string;
 };
 
-class Select {
+export class Select {
   readonly element: HTMLElement;
   readonly typeName: string;
   readonly callback: TSelectProps['callback'];
@@ -67,28 +65,7 @@ class Select {
       }
     }
   }
-}
-
-const selects = document.querySelectorAll('.select') as NodeList;
-{
-  const typeElement = selects[0] as HTMLElement;
-  const callback = ({ type, value }: IResponseSelect) =>
-    console.log(type, value);
-  const roomType = new Select({
-    element: typeElement,
-    typeName: 'roomType',
-    callback,
-  });
-  roomType.init();
-}
-{
-  const typeElement = selects[1] as HTMLElement;
-  const callback = ({ type, value }: IResponseSelect) =>
-    console.log(type, value);
-  const repareType = new Select({
-    element: typeElement,
-    typeName: 'repareType',
-    callback,
-  });
-  repareType.init();
+  public getValue() {
+    return this.value;
+  }
 }

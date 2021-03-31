@@ -1,10 +1,23 @@
 import './blocks/inputType/inputType.scss';
-import './blocks/inputType/inputType';
 import './index.scss';
-import './Calculator/Calculator';
 import './blocks/select/select.scss';
-import './blocks/select/select';
 import './blocks/roomsCount/roomsCount.scss';
-import './blocks/roomsCount/roomsCount';
 import './blocks/area/area.scss';
-import './blocks/area/area';
+
+import { Calculator } from './Calculator/Calculator';
+
+/*
+ *import './blocks/inputType/inputType';
+ *import './blocks/select/select';
+ *import './blocks/roomsCount/roomsCount';
+ *import './blocks/area/area';
+ *import './Calculator/Calculator';
+ */
+
+const calcElement = document.querySelector('.calc') as HTMLElement;
+
+const callback = (complexData: any) => {
+  console.log(complexData);
+};
+const calculator = new Calculator({ element: calcElement, callback });
+calculator.init();

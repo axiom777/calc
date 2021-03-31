@@ -1,16 +1,13 @@
-interface TResponse {
-  type: string;
-  value: string | null;
-}
+import { IResponseInputType } from '../../Interfaces';
 
 type TInputTypeProps = {
   element: HTMLElement;
-  callback: (arg: TResponse) => void;
+  callback: (arg: IResponseInputType) => void;
 };
 
-class InputType {
+export class InputType {
   element: HTMLElement;
-  callback: (arg: TResponse) => void;
+  callback: (arg: IResponseInputType) => void;
   activeElement: string | null;
 
   constructor({ element, callback }: TInputTypeProps) {
@@ -39,12 +36,7 @@ class InputType {
       }
     }
   }
-}
-
-{
-  const element = document.querySelector('.calc__house-types') as HTMLElement;
-  const callback = ({ type, value }: TResponse) => console.log(type, value);
-
-  const inputType = new InputType({ element, callback });
-  inputType.init();
+  public getValue() {
+    return this.activeElement;
+  }
 }
