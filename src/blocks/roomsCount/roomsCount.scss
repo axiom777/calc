@@ -1,25 +1,39 @@
 .rooms-count {
+  position: relative;
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
   padding: 10px;
   user-select: none;
+  &_disabled {
+    pointer-events: none;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: gray;
+      z-index: 1;
+      opacity: 30%;
+    }
+  }
 
-  &__values  {
+  &__values {
     margin-left: 10px;
     display: flex;
   }
   &__element {
-    padding:0 15px;
+    padding: 0 15px;
     cursor: pointer;
   }
 
   &__input {
-    display:none;
+    display: none;
   }
-  &__input:checked ~ &__value{
+  &__input:checked ~ &__value {
     color: orange;
-
   }
 }

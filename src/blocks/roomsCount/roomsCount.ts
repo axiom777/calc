@@ -9,17 +9,30 @@ export class RoomsCount {
   element: HTMLElement;
   callback: (arg: IResponseRoomsCount) => void;
   value: number;
+  handleClickBind: (this: HTMLElement, ev: MouseEvent) => any;
+  isActive: boolean;
 
   constructor({ element, callback }: TRoomsCountProps) {
     this.element = element;
     this.callback = callback;
     this.value = 0;
+    this.isActive = true;
+    this.handleClickBind = this.handleClick.bind(this);
   }
 
   init() {
-    const handle = this.handleClick.bind(this);
-    this.element.addEventListener('click', handle);
+    this.events('add');
   }
+
+  events(type: 'add' | 'remove') {
+    if (type === 'add') {
+      this.element.addEventListener('click', this.handleClickBind, true);
+    }
+    if (type === 'remove') {
+      this.element.removeEventListener('click', this.handleClickBind, true);
+    }
+  }
+
   change() {
     const type = 'roomsCount';
     const value = this.value;
@@ -36,6 +49,18 @@ export class RoomsCount {
       this.change();
     }
   }
+  enable() {
+    this.isActive = true;
+    this.element.classList.remove('rooms-count_disabled');
+    this.events('add');
+  }
+  disable() {
+    this.isActive = false;
+    !this.element.classList.contains('rooms-count_disabled') &&
+      this.element.classList.add('rooms-count_disabled');
+    this.events('remove');
+  }
+
   public getValue() {
     return this.value;
   }
