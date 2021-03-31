@@ -16,6 +16,10 @@ export class InputType {
     this.activeElement = null;
   }
   init() {
+    const aciveEls = this.element.querySelectorAll(
+      'input:checked',
+    ) as NodeListOf<HTMLInputElement>;
+    aciveEls.forEach((el) => (el.checked = false));
     const handle = this.handleClick.bind(this);
     this.element.addEventListener('click', handle);
   }

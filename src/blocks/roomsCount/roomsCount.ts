@@ -21,6 +21,11 @@ export class RoomsCount {
   }
 
   init() {
+    const aciveEls = this.element.querySelectorAll(
+      'input:checked',
+    ) as NodeListOf<HTMLInputElement>;
+    aciveEls.forEach((el) => (el.checked = false));
+
     this.events('add');
   }
 

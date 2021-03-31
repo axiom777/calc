@@ -14,10 +14,10 @@ export class Area {
     this.element = element;
     this.callback = callback;
     this.prevValue = '0';
-    this.init();
   }
 
   init() {
+    this.element.value = '';
     const handle = this.handleInput.bind(this);
     this.element.addEventListener('input', handle);
   }
