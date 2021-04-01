@@ -58,7 +58,6 @@ const callback = (complexData: TComplexData) => {
   const errorsArr = [];
   errors.innerHTML = '';
   result.innerHTML = '';
-  console.log(complexData);
 
   if (houseType === null) {
     errorsArr.push('Укажите где будет ремонт');
