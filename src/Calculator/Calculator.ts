@@ -2,16 +2,19 @@ import { Area } from '../blocks/area/area';
 import { InputType } from '../blocks/inputType/inputType';
 import { RoomsCount } from '../blocks/roomsCount/roomsCount';
 import { Select } from '../blocks/select/select';
+import { TComplexData } from '../Interfaces';
 
 type TCalculatorProps = {
   element: HTMLElement;
   callback: (arg: any) => void;
 };
 
-type TResponseTypes = {
-  type: string;
-  value: number | string | null;
-};
+/*
+ *type TResponseTypes = {
+ *  type: string;
+ *  value: number | string | null;
+ *};
+ */
 
 export class Calculator {
   public area: Area;
@@ -61,12 +64,12 @@ export class Calculator {
     this.callback(complexData);
   }
 
-  getComlexData() {
+  getComlexData(): TComplexData {
     const area = this.area.getValue();
-    const houseType = this.inputType.getValue();
+    const houseType = this.inputType.getValue() as TComplexData['houseType'];
     const rooms = this.roomsCount.getValue();
-    const roomType = this.roomType.getValue();
-    const repareType = this.repareType.getValue();
+    const roomType = this.roomType.getValue() as TComplexData['roomType'];
+    const repareType = this.repareType.getValue() as TComplexData['repareType'];
     return {
       area,
       houseType,

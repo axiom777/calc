@@ -6,6 +6,9 @@ import './blocks/area/area.scss';
 
 import { Calculator } from './Calculator/Calculator';
 
+import { configRoom, configFlat } from './config';
+import { TComplexData } from './Interfaces';
+
 /*
  *import './blocks/inputType/inputType';
  *import './blocks/select/select';
@@ -16,8 +19,16 @@ import { Calculator } from './Calculator/Calculator';
 
 const calcElement = document.querySelector('.calc') as HTMLElement;
 
-const callback = (complexData: any) => {
-  console.log(complexData);
+const callback = (complexData: TComplexData) => {
+  const { houseType } = complexData;
+  if (houseType === 'new' || houseType === 'second') {
+    calculator.roomType.disable();
+    calculator.roomsCount.enable();
+  }
+  if (houseType === 'room') {
+    calculator.roomType.enable();
+    calculator.roomsCount.disable();
+  }
 };
 const calculator = new Calculator({ element: calcElement, callback });
 calculator.init();
