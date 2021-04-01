@@ -47,7 +47,7 @@ export class Area {
     }
     value[0] === '-' && (target.value = target.value.substr(1));
 
-    this.prevValue = value;
+    this.prevValue = Math.abs(Number(value)).toString();
     this.change();
   }
 
