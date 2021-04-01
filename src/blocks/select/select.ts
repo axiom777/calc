@@ -16,7 +16,7 @@ export class Select {
   listElement: HTMLElement;
   value: string | null;
   bindClick: (this: HTMLElement, ev: MouseEvent) => any | undefined;
-  bindColaple: (this: HTMLElement, ev: MouseEvent) => any | undefined;
+  bindColapse: (this: HTMLElement, ev: MouseEvent) => any | undefined;
 
   constructor({ element, callback, typeName }: TSelectProps) {
     this.element = element;
@@ -28,7 +28,7 @@ export class Select {
     this.valueElement = element.querySelector('.select__value') as HTMLElement;
     this.listElement = element.querySelector('.select__list') as HTMLElement;
     this.bindClick = this.handleClick.bind(this);
-    this.bindColaple = this.colapse.bind(this);
+    this.bindColapse = this.colapse.bind(this);
   }
 
   init() {
@@ -37,11 +37,11 @@ export class Select {
   events(type: 'add' | 'remove') {
     if (type === 'add') {
       this.element.addEventListener('click', this.bindClick, true);
-      this.element.addEventListener('mouseleave', this.bindColaple, true);
+      this.element.addEventListener('mouseleave', this.bindColapse);
     }
     if (type === 'remove') {
       this.element.removeEventListener('click', this.bindClick, true);
-      this.element.removeEventListener('mouseleave', this.bindColaple, true);
+      this.element.removeEventListener('mouseleave', this.bindColapse);
     }
   }
   colapse() {
