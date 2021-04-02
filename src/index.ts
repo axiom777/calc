@@ -6,7 +6,7 @@ import './blocks/area/area.scss';
 
 import { Calculator } from './Calculator/Calculator';
 
-import { configRoom, configFlat } from './config';
+import { configRoom, configFlat, TRepare } from './config';
 import { TComplexData } from './Interfaces';
 
 /*
@@ -27,30 +27,70 @@ const showErrors = (errorsArr: string[]) => {
   });
 };
 
+const getDays = (
+  area: number,
+  days: TRepare['days'],
+  stepConfig: string,
+): number => {
+  const areaKeys = Object.keys(days as Object).sort(
+    (a, b) => Number(a) - Number(b),
+  );
+  let key: string = '';
+  for (let i = 0; i < areaKeys.length; i++) {
+    if (area <= Number(areaKeys[i])) {
+      key = areaKeys[i];
+      break;
+    }
+  }
+  if (key !== '') return days![key];
+  const maxArea = areaKeys[areaKeys.length - 1];
+  const remaindArea = area - Number(maxArea);
+  const maxDays = days![maxArea];
+  const [areaStep, daysStep] = stepConfig.split('-').map((e) => Number(e));
+
+  return (
+    Number(maxDays + daysStep) + Math.floor(remaindArea / (areaStep / daysStep))
+  );
+};
+
 const showResult = (complexData: TComplexData) => {
   const { houseType, area, roomType, repareType } = complexData;
   let price = 0;
   let materialPrice = 0;
+  let repare: TRepare;
+  let days;
+  let stepConfig;
 
   if (houseType === 'room' && repareType !== null && roomType !== null) {
-    price = configRoom[repareType][roomType].remont;
-    materialPrice = configRoom[repareType][roomType].materials;
+    repare = configRoom[repareType][roomType];
+    price = repare.remont;
+    materialPrice = repare.materials;
+    repare.hasOwnProperty('days') && (days = repare.days);
+    repare.hasOwnProperty('stepConfig') && (stepConfig = repare.stepConfig);
   }
   if (repareType !== null) {
     if (
       houseType === 'second' ||
       (houseType === 'new' && repareType !== null)
     ) {
-      price = configFlat[houseType][repareType].remont;
-      materialPrice = configFlat[houseType][repareType].materials;
+      repare = configFlat[houseType][repareType];
+      price = repare.remont;
+      materialPrice = repare.materials;
+      repare.hasOwnProperty('days') && (days = repare.days);
+      repare.hasOwnProperty('stepConfig') && (stepConfig = repare.stepConfig);
     }
   }
-  result.innerHTML = `
+  const totalDays = getDays(area, days, stepConfig as string);
+  let res = `
 <div>Стоимость ремонта 1кв. метра = ${price}</div>
 <div>Стоимость материлов на 1кв. метр = ${materialPrice}</div>
 <div>Стоимость ремонта для площади ${area}кв. метров = ${price * area}</div>
 <div>Стоимость материлов для  ${area}кв. метров = ${materialPrice * area}</div>
 `;
+  totalDays !== undefined &&
+    (res += `<div>Количество дней на работу ${totalDays} </div> `);
+
+  result.innerHTML = res;
 };
 
 const callback = (complexData: TComplexData) => {
@@ -85,7 +125,7 @@ const callback = (complexData: TComplexData) => {
   }
 
   errorsArr && showErrors(errorsArr);
-  errorsArr.length ===0 &&showResult(complexData);
+  errorsArr.length === 0 && showResult(complexData);
 };
 
 const calculator = new Calculator({ element: calcElement, callback });

@@ -17,9 +17,15 @@ enum FlatOptions {
   new = 'new',
 }
 
-type TRepare = {
+type TDays = {
+  [key: string]: number;
+};
+
+export type TRepare = {
   remont: number;
   materials: number;
+  days?: TDays;
+  stepConfig?: string;
 };
 
 export type TConfigRoom = {
@@ -39,6 +45,8 @@ export const configRoom: TConfigRoom = {
     room: {
       remont: 2500,
       materials: 200,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
     kitchen: {
       remont: 2650,
