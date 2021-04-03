@@ -51,62 +51,90 @@ export const configRoom: TConfigRoom = {
     kitchen: {
       remont: 2650,
       materials: 350,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
     bath: {
       remont: 10580,
       materials: 650,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
     toilet: {
       remont: 13500,
       materials: 850,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
     combined: {
       remont: 10580,
       materials: 650,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
   },
   complete: {
     room: {
       remont: 5380,
       materials: 700,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
     kitchen: {
       remont: 5900,
       materials: 880,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
     bath: {
       remont: 25168,
       materials: 3630,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
     toilet: {
       remont: 21500,
       materials: 3200,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
     combined: {
       remont: 25168,
       materials: 3630,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
   },
   design: {
     room: {
       remont: 7150,
       materials: 1830,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
     kitchen: {
       remont: 7980,
       materials: 1995,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
     bath: {
       remont: 32150,
       materials: 4830,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
     toilet: {
       remont: 31850,
       materials: 4830,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
     combined: {
       remont: 32150,
       materials: 4830,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
   },
 };
@@ -116,28 +144,40 @@ export const configFlat: TConfigFlat = {
     cosmetic: {
       remont: 2500,
       materials: 200,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
     complete: {
       remont: 5380,
       materials: 700,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
     design: {
       remont: 7150,
       materials: 1830,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
   },
   new: {
     cosmetic: {
       remont: 2500,
       materials: 200,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
     complete: {
       remont: 4380,
       materials: 700,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
     design: {
       remont: 6150,
       materials: 1830,
+      days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
+      stepConfig: '5-1',
     },
   },
 };
