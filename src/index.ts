@@ -36,6 +36,7 @@ const getDays = (
   area: number,
   days: TRepare['days'],
   stepConfig: string,
+  rooms: number,
 ): number => {
   const areaKeys = Object.keys(days as Object).sort(
     (a, b) => Number(a) - Number(b),
@@ -59,7 +60,7 @@ const getDays = (
 };
 
 const showResult = (complexData: TComplexData) => {
-  const { houseType, area, roomType, repareType } = complexData;
+  const { houseType, area, roomType, repareType, rooms } = complexData;
   let price = 0;
   let materialPrice = 0;
   let repare: TRepare;
@@ -85,7 +86,12 @@ const showResult = (complexData: TComplexData) => {
       repare.hasOwnProperty('stepConfig') && (stepConfig = repare.stepConfig);
     }
   }
-  const totalDays = getDays(area, days, stepConfig as string);
+  let totalDays = 0;
+  if (rooms !== 0 && houseType !== 'room') {
+    totalDays = repare!.rooms![rooms - 1];
+  } else {
+    totalDays = getDays(area, days, stepConfig as string, rooms);
+  }
 
   priceOfWrok.innerHTML = (price * area).toString();
   priceOfMaterials.innerHTML = (materialPrice * area).toString();
@@ -93,6 +99,7 @@ const showResult = (complexData: TComplexData) => {
 };
 
 const callback = (complexData: TComplexData) => {
+  console.log(complexData);
   const { houseType, area, roomType, repareType } = complexData;
   const errorsArr = [];
   errors.innerHTML = '';

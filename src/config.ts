@@ -26,6 +26,7 @@ export type TRepare = {
   materials: number;
   days?: TDays;
   stepConfig?: string;
+  rooms?: number[];
 };
 
 export type TConfigRoom = {
@@ -146,18 +147,21 @@ export const configFlat: TConfigFlat = {
       materials: 200,
       days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
       stepConfig: '5-1',
+      rooms: [13, 15, 18, 21, 24],
     },
     complete: {
       remont: 5380,
       materials: 700,
       days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
       stepConfig: '5-1',
+      rooms: [28, 31, 38, 44, 50],
     },
     design: {
       remont: 7150,
       materials: 1830,
       days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
       stepConfig: '5-1',
+      rooms: [35, 40, 48, 56, 64],
     },
   },
   new: {
@@ -166,18 +170,21 @@ export const configFlat: TConfigFlat = {
       materials: 200,
       days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
       stepConfig: '5-1',
+      rooms: [13, 15, 18, 21, 24],
     },
     complete: {
       remont: 4380,
       materials: 700,
       days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
       stepConfig: '5-1',
+      rooms: [28, 31, 38, 44, 50],
     },
     design: {
       remont: 6150,
       materials: 1830,
       days: { 17: 4, 23: 5, 29: 6, 35: 7, 41: 8, 47: 9 },
       stepConfig: '5-1',
+      rooms: [35, 40, 48, 56, 64],
     },
   },
 };
