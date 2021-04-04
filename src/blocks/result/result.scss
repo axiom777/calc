@@ -1,0 +1,36 @@
+.result {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin-right: 20px;
+  &:last-child{
+
+  margin-right: 0;
+  }
+
+  &__heading {
+    border-bottom: 1px solid gray;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:before{
+      content: '✓';
+      font-size: 20px;
+    }
+
+  }
+  &__total{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 20px;
+  }
+  &__value {
+    margin-right: 10px;
+    font-size: 3rem;
+  }
+  &__dimension {
+    margin-bottom: 7px;
+  }
+}

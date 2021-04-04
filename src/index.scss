@@ -73,5 +73,11 @@ body {
     border: none;
     outline: none;
   }
+  &__results {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+
+  }
 }
 

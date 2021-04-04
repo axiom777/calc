@@ -1,7 +1,8 @@
-include /blocks/inputType/inputType.pug
-include /blocks/select/select.pug
-include /blocks/area/area.pug
-include /blocks/roomsCount/roomsCount.pug
+include ./blocks/inputType/inputType.pug
+include ./blocks/select/select.pug
+include ./blocks/area/area.pug
+include ./blocks/roomsCount/roomsCount.pug
+include ./blocks/result/result.pug
 -
   const roomData = {
     defaultName:"Тип помщенения",
@@ -23,22 +24,32 @@ include /blocks/roomsCount/roomsCount.pug
     ] 
     }
 
-.wrapper
-  .calc
-    h2.calc__heading Онлайн калькулятор ремонта
-    .calc__house-types
-      +inputType({name:"Новостройка", group:"type", slug:"new"})
-      +inputType({name:"Вторичное жильё", group:"type", slug:"second"})
-      +inputType({name:"Комната", group:"type", slug:"room"})
-    .calc__controls
-      .calc__item
-        +selectElements(roomData)
-      .calc__item
-        +roomsCount(['1','2','3','4+'])
-      .calc__item
-        +area
-      .calc__item
-        +selectElements(typeData)
-    //-button.calc__button.hover-effect Рассчитать стоимость
-    .errors
-    .result
+doctype html
+html
+  head
+    title This is title
+    meta(name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+  body
+    .wrapper
+      .calc
+        h2.calc__heading Онлайн калькулятор ремонта
+        .calc__house-types
+          +inputType({name:"Новостройка", group:"type", slug:"new"})
+          +inputType({name:"Вторичное жильё", group:"type", slug:"second"})
+          +inputType({name:"Комната", group:"type", slug:"room"})
+        .calc__controls
+          .calc__item
+            +selectElements(roomData)
+          .calc__item
+            +roomsCount(['1','2','3','4+'])
+          .calc__item
+            +area
+          .calc__item
+            +selectElements(typeData)
+        //-button.calc__button.hover-effect Рассчитать стоимость
+        .errors
+        .calc__results
+          +result({heading:'Стоимость ремонта',value:'0',dimension:'₽'})
+          +result({heading:'Стоимость материклов',value:'0',dimension:'₽'})
+          +result({heading:'Срок Ремонта',value:'0',dimension:'дней'})
+          

@@ -3,6 +3,7 @@ import './index.scss';
 import './blocks/select/select.scss';
 import './blocks/roomsCount/roomsCount.scss';
 import './blocks/area/area.scss';
+import './blocks/result/result.scss';
 
 import { Calculator } from './Calculator/Calculator';
 
@@ -19,7 +20,11 @@ import { TComplexData } from './Interfaces';
 
 const calcElement = document.querySelector('.calc') as HTMLElement;
 const errors = calcElement.querySelector('.errors') as HTMLElement;
-const result = calcElement.querySelector('.result') as HTMLElement;
+const results = calcElement.querySelectorAll(
+  '.result .result__value',
+) as NodeListOf<HTMLElement>;
+
+const [priceOfWrok, priceOfMaterials, workDays] = results;
 
 const showErrors = (errorsArr: string[]) => {
   errorsArr.forEach((e) => {
@@ -81,23 +86,19 @@ const showResult = (complexData: TComplexData) => {
     }
   }
   const totalDays = getDays(area, days, stepConfig as string);
-  let res = `
-<div>Стоимость ремонта 1кв. метра = ${price}</div>
-<div>Стоимость материлов на 1кв. метр = ${materialPrice}</div>
-<div>Стоимость ремонта для площади ${area}кв. метров = ${price * area}</div>
-<div>Стоимость материлов для  ${area}кв. метров = ${materialPrice * area}</div>
-`;
-  totalDays !== undefined &&
-    (res += `<div>Количество дней на работу ${totalDays} </div> `);
 
-  result.innerHTML = res;
+  priceOfWrok.innerHTML = (price * area).toString();
+  priceOfMaterials.innerHTML = (materialPrice * area).toString();
+  workDays.innerHTML = totalDays.toString();
 };
 
 const callback = (complexData: TComplexData) => {
   const { houseType, area, roomType, repareType } = complexData;
   const errorsArr = [];
   errors.innerHTML = '';
-  result.innerHTML = '';
+  priceOfWrok.innerHTML = '0';
+  priceOfMaterials.innerHTML = '0';
+  workDays.innerHTML = '0';
 
   if (houseType === null) {
     errorsArr.push('Укажите где будет ремонт');
