@@ -136,5 +136,16 @@ const callback = (complexData: TComplexData) => {
   errorsArr.length === 0 && showResult(complexData);
 };
 
-const calculator = new Calculator({ element: calcElement, callback });
+const emptyCallback = () => {};
+const button = document.querySelector('.calc__button') as HTMLElement;
+
+const calculator = new Calculator({
+  element: calcElement,
+  callback: emptyCallback,
+});
 calculator.init();
+
+button.addEventListener('click', () => {
+  const data = calculator.getComlexData();
+  callback(data);
+});
