@@ -115,19 +115,6 @@ const callback = (complexData: TComplexData) => {
     errorsArr.push('Укажите размер ремонтируемой площади');
   }
 
-  if (houseType === 'new' || houseType === 'second') {
-    calculator.roomType.disable();
-    calculator.roomsCount.enable();
-  }
-
-  if (houseType === 'room') {
-    if (roomType === null) {
-      errorsArr.push('Укажите тип помещения');
-    }
-    calculator.roomType.enable();
-    calculator.roomsCount.disable();
-  }
-
   if (repareType === null) {
     errorsArr.push('Укажите помещение тип Ремонта');
   }
@@ -136,7 +123,19 @@ const callback = (complexData: TComplexData) => {
   errorsArr.length === 0 && showResult(complexData);
 };
 
-const emptyCallback = () => {};
+const emptyCallback = (complexData: TComplexData) => {
+  const { houseType } = complexData;
+
+  if (houseType === 'new' || houseType === 'second') {
+    calculator.roomType.disable();
+    calculator.roomsCount.enable();
+  }
+
+  if (houseType === 'room') {
+    calculator.roomType.enable();
+    calculator.roomsCount.disable();
+  }
+};
 const button = document.querySelector('.calc__button') as HTMLElement;
 
 const calculator = new Calculator({
